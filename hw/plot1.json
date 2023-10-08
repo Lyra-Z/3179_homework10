@@ -20,13 +20,14 @@
           "bind": {
               "input": "select",
               "options": [
+                  [0,0],
                   [87, 30],
                   [10, 0],
                   [15, 50],
                   [-100, 50],
                   [-60, -15]
               ],
-              "labels": ["Asia", "Africa", "Europe", "North America", "South America"],
+              "labels": ["Whole","Asia", "Africa", "Europe", "North America", "South America"],
               "name": "Region Center:"
           }
       }
