@@ -7,7 +7,7 @@
       "name": "country_param",
       "bind": {
         "input": "select",
-        "options": ["All","Argentina","Austria", "Belgium", "Brazil", "Chile", "China", "Colombia", "Denmark", "Ecuador", "France", "Germany", "ltaly", "Japan", "Mexico", "Panama", "Peru", "Portugal", "Singapore", "Slovenia", "South Africa", "South Korea", "Spain", "Sweden", "Switzerland", "Thailand", "Turkey","Turkey", "United Arab Emirates", "United Kingdom", "United States"],
+        "options": ["All","Argentina","Austria", "Belgium", "Brazil", "Chile", "China", "Colombia", "Denmark", "Ecuador", "France", "Germany", "Italy", "Japan", "Mexico", "Panama", "Peru", "Portugal", "Singapore", "Slovenia", "South Africa", "South Korea", "Spain", "Sweden", "Switzerland", "Thailand", "Turkey","Turkey", "United Arab Emirates", "United Kingdom", "United States"],
         "name": "Country Filter"
       },
       "value": "All"
