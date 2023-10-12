@@ -1,0 +1,51 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/Lyra-Z/-3139-homework_w9/main/data/restaurantRank.csv"
+  },
+  "width": 300,
+  "height": 300,
+  "transform": [
+    {"aggregate": [{"op": "count", "as": "Count"}], "groupby": ["Continent"]},
+    {"window": [{"op": "sum", "field": "Count", "as": "Total"}], "frame": [null, null]},
+    {"calculate": "datum.Count / datum.Total", "as": "Percentage"}
+  ],
+  "layer": [
+    {
+      "mark": {"type": "arc", "innerRadius": 90},
+      "encoding": {
+        "theta": {"field": "Count", "type": "quantitative"},
+        "color": {
+          "field": "Continent", 
+          "type": "nominal",  
+          "legend": { "title": null,"orient": "bottom"},
+          "scale": {
+            "range": ["#d0aad2", "#b58cbf", "#9979b2", "#7c6694", "#5f5277", "#443f5a"]
+          }
+      },
+        "tooltip": [
+          {
+            "field": "Continent",
+            "type": "nominal",
+            "title": "Continent"
+          },
+          {
+            "field": "Percentage",
+            "type": "quantitative",
+            "format": ".1%",
+            "title": "Percentage"
+          }
+    ]
+      }
+    },
+    {
+      "data": {"values": [{"value": 0}]},
+      "mark": {"type": "text", "align": "center", "baseline": "middle", "fontSize": 16, "fontWeight": "bold"},
+      "encoding": {
+        "text": {"value": "Continent"}
+      }
+    }
+  ],
+  "view": {"stroke": null},
+  "background": "#f0cea105"
+}

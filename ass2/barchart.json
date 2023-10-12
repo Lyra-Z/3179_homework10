@@ -1,0 +1,57 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 600,
+  "height": 800,
+  "title": "The number of restaurants in each city",
+  "background": "#f0cea105",
+  "params": [
+    {
+      "name": "country_param",
+      "bind": {
+        "input": "select",
+        "options": ["All","Argentina","Austria", "Belgium", "Brazil", "Chile", "China", "Colombia", "Denmark", "Ecuador", "France", "Germany", "Italy", "Japan", "Mexico", "Panama", "Peru", "Portugal", "Singapore", "Slovenia", "South Africa", "South Korea", "Spain", "Sweden", "Switzerland", "Thailand", "Turkey","Turkey", "United Arab Emirates", "United Kingdom", "United States"],
+        "name": "Country"
+      },
+      "value": "All"
+    }
+  ],
+  "data": {
+    "url": "https://raw.githubusercontent.com/Lyra-Z/-3139-homework_w9/main/data/restaurantRank.csv"
+  },
+"transform": [
+    {"filter": "datum.Country === country_param || country_param === 'All'"},
+    {
+      "aggregate": [{"op": "count", "as": "Count"}],
+      "groupby": ["City", "Country"]
+    },
+    {
+      "window": [{"op": "rank", "as": "Rank"}],
+      "sort": [{"field": "Count", "order": "descending"}]
+    }
+  ],
+  "encoding": {
+    "y": {"field": "City", "type": "ordinal", "sort": {"field": "Rank", "order": "ascending"}},
+    "tooltip": [
+      {"field": "Country", "type": "nominal", "title": "Country"},
+      {"field": "City", "type": "nominal", "title": "City"},
+      {"field": "Count", "type": "quantitative", "title": "Count"}
+    ]
+  },
+  "layer": [
+    {
+      "mark": "bar",
+      "encoding": {
+        "x": {"field": "Count", "type": "quantitative", "axis": {"title": "The number of restaurants","values": [1, 2, 3, 4, 5, 6, 7]}},
+        "color": {"value": "#5d3a86b4"}
+      }
+    },
+    {
+      "mark": {"type": "text", "align": "left", "baseline": "middle", "dx": 3},
+      "encoding": {
+        "text": {"field": "Count", "type": "quantitative"},
+        "x": {"field": "Count", "type": "quantitative","axis": null},
+        "y": {"field": "City", "type": "ordinal", "axis": {"grid": false}}
+        }
+    }
+  ]
+}
